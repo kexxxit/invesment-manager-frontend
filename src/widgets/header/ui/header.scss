@@ -1,0 +1,21 @@
+.header {
+
+    &__wrapper {
+        position: relative;
+        display: grid;
+        padding: 20px 20px;
+        grid-template-columns: 1fr 4fr 5fr 2fr;
+        grid-column-gap: 40px;
+        align-items: center;
+    }
+
+    &__balance {
+        color: white;
+    }
+
+    &__account {
+        position: relative;
+        font-size: 14px;
+    }
+
+}

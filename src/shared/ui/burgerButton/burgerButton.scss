@@ -1,0 +1,54 @@
+.burger-button {
+
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 5px;
+    width: 40px;
+    height: 25px;
+    align-items: center;
+
+    &__stick {
+        width: 40px;
+        height: 5px;
+        background-color: white;
+        border-radius: 99px;
+        transition: all 0.3s ease, background-color 0.3s ease;
+
+        &__stick--top {
+            transform: none;
+        }
+
+        &__stick--bottom {
+            transform: none;
+        }
+
+        &__stick--middle {
+            display: block;
+        }
+    }
+
+    &__label {
+        background: transparent;
+        border: none;
+    }
+
+    &:hover {
+        .burger-button__stick {
+            background-color: #FF8049; // укажите нужный цвет
+            position: absolute;        
+        }
+
+        .burger-button__stick--top {
+            transform: rotate(45deg);
+        }
+      
+        .burger-button__stick--bottom {
+            transform: rotate(-45deg);
+        }
+        
+        .burger-button__stick--middle {
+            display: none;
+        }
+    }
+}

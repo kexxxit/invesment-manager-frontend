@@ -1,0 +1,44 @@
+.recomendation {
+    display: grid;
+    grid-template-columns: 2fr 4fr 6fr;
+
+    &__logo {
+        width: 126px;
+        height: 126px;
+        margin: 0 auto;
+        border-radius: 20px;
+    }
+
+    &__name {
+        margin-bottom: 5px;
+    }
+
+    &__specifications {
+        margin-top: 15px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        h2 {
+            margin-top: 5px;
+        }
+    }
+
+    &__yield {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &--spec {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        div h2:last-child {
+            color: rgb(0, 0, 0, 0.6);
+        }
+    }
+
+    h3 {
+        color: rgb(0, 0, 0, 0.6);
+    }
+}

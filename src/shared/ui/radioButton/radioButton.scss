@@ -1,0 +1,44 @@
+.radio {
+    
+    &__wrapper {
+        height: 40px;
+        width: 100%;
+        background-color: white;
+        border-radius: 99px;
+        box-shadow: inset 5px 5px 5px lightgray;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+    &__label {
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        color: white;
+        position: relative;
+        bottom: 40px;
+        user-select: none;
+    }
+
+    &_active {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 50%;
+        background-color: #ff8049;
+        border-radius: 99px;
+        transition: transform 0.3s ease;
+        z-index: 0;
+        
+
+        &--left {
+            transform: translateX(0);
+        }
+
+        &--right {
+            transform: translateX(100%);
+        }
+    }
+}

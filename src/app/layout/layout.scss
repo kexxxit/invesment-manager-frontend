@@ -1,0 +1,11 @@
+// @use 'src/app/styles/breakpoints';
+
+.layout {
+    background: var(--white);
+
+    &__content {
+        display: flex;
+        height: 100%;
+        margin: 30px 0;
+    }
+}
