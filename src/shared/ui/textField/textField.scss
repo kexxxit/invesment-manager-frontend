@@ -1,0 +1,19 @@
+.text-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.text-field input {
+    border: none;
+    border-radius: 99px;
+    font-size: 16px;
+    padding: 10px 15px;
+    width: calc(100% - 30px);
+    background-color: #E8E3E1;
+}
+
+.text-field input:focus {
+    outline: none;
+    background-color: rgb(236, 236, 236);
+}

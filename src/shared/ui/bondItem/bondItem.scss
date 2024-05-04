@@ -1,0 +1,30 @@
+.bond {
+    width: 100%;
+    height: 118px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr 2fr 2fr 2fr;
+    column-gap: 40px;
+    align-items: center;
+    border-top: 2px solid;
+    border-color: rgba(0, 0, 0, 0.4);
+
+    &__logo {
+        width: 88px;
+        height: 88px;
+        border-radius: 20px;
+    }
+
+    &__name-group {
+        display: grid;
+        row-gap: 5px;
+    }
+
+    &__isin {
+        color: rgba(0, 0, 0, 0.6);
+    }
+}
+
+.bond:last-child {
+    border-bottom: 2px solid;
+    border-color: rgba(0, 0, 0, 0.4);
+}

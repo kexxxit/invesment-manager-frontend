@@ -20,8 +20,6 @@ export const calcYieldByPeriods = (bond: IBond): IYieldByPeriods => {
     const daysToMaturity = maturityDate.diff(today, 'day')
     const daysPerPeriod = Math.ceil(daysToMaturity / 3)
 
-    console.log(daysPerPeriod)
-
     let currentDate: dayjs.Dayjs = today
     let currentYield = 0
 
@@ -31,7 +29,7 @@ export const calcYieldByPeriods = (bond: IBond): IYieldByPeriods => {
         const nextDate = currentDate.add(daysPerPeriod, 'day')
         const daysInPeriod = nextDate.diff(currentDate, 'day')
         const periodYield =
-            (bond.percentPerYear / 100) *
+            (i === 3 ? bond.yieldToMaturity : bond.percentPerYear / 100) *
             (daysInPeriod / 365) *
             bond.initialNominal
         currentYield += periodYield
@@ -42,7 +40,6 @@ export const calcYieldByPeriods = (bond: IBond): IYieldByPeriods => {
             mounthsNumber: nextDate.diff(today, 'month'),
             yield: currentYield.toFixed(2),
         })
-        console.log(currentDate)
         currentDate = nextDate
     }
 

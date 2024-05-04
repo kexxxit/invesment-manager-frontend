@@ -21,5 +21,13 @@ export interface IBond {
     /** Current price of the bond */
     readonly price: number
     /** Yield per year (%) */
-    readonly percentPerYear: number   
+    readonly percentPerYear: number 
+    /** Yield to maturity per year (%) */  
+    readonly yieldToMaturity: number
+    /** Logo name */ 
+    readonly logoName: string
+    /** Financial sector of the bond */ 
+    readonly sector: string
+    /** Bond risk level */ 
+    readonly riskLevel: number
 }

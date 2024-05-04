@@ -1,6 +1,6 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { AxiosInstance, AxiosResponse } from 'axios'
 
-export const API_URL = 'https://localhost:7273/api/invest/'
+export const API_URL = 'http://localhost:5265/api/'
 
 class ApiInstance {
     private axios: AxiosInstance
@@ -9,21 +9,20 @@ class ApiInstance {
         this.axios = axios.create({
             baseURL: API_URL,
             timeout: 120000,
+            withCredentials: true,
             headers: {
                 'Content-Type': 'application/json',
-                'Token': ''
             },
         })
     }
 
-    async get<T>(
-        endpoint: string,
-        options: AxiosRequestConfig = {}
-    ): Promise<T> {
-        const response: AxiosResponse<T> = await this.axios.get(
-            endpoint,
-            options
-        )
+    async get<T>(endpoint: string): Promise<T> {
+        const response: AxiosResponse<T> = await this.axios.get(endpoint)
+        return response.data
+    }
+
+    async post<T, U>(endpoint: string, data: T): Promise<U> {
+        const response: AxiosResponse<U> = await this.axios.post(endpoint, data)
         return response.data
     }
 }

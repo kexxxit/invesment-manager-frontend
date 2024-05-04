@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import { IBond } from '../../types'
 import './recomendedBond.scss'
 import { IYieldByPeriods, calcYieldByPeriods } from '../../lib/yield'
+import { LogoSize, createLogoUrl } from '../../lib/logo'
 
 type PropsType = {
     bond: IBond
@@ -19,9 +20,7 @@ export const RecomendedBond: FC<PropsType> = ({ bond }) => {
         <div className='recomendation'>
             <img
                 className='recomendation__logo'
-                src={
-                    'https://invest-brands.cdn-tinkoff.ru/RU000A101RP4x160.png'
-                }
+                src={ createLogoUrl(bond.logoName, LogoSize.Small) }
                 alt=''
             />
             <div>
@@ -34,7 +33,7 @@ export const RecomendedBond: FC<PropsType> = ({ bond }) => {
                     </div>
                     <div>
                         <h3>Доходность к погашению</h3>
-                        <h2>{bond.percentPerYear} %</h2>
+                        <h2>{bond.yieldToMaturity} % годовых</h2>
                     </div>
                 </div>
             </div>

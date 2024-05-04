@@ -1,0 +1,27 @@
+.auth {
+    background-color: white;
+    border-radius: 20px;
+    height: 300px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    &__form {
+        width: 400px;
+        margin: 20px;
+    }
+
+    &__wrapper {
+        display: grid;
+        flex-direction: column;
+        justify-items: center;
+        row-gap: 10px;
+
+        button {
+            width: 100px;
+        }
+    }
+}
