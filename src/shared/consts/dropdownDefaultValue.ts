@@ -1,0 +1,1 @@
+export const DEFAULT_DROPDOWN_VALUE = 'DEFAULT'

@@ -8,25 +8,20 @@ import { isAuthMethod } from '../../entites/auth'
 
 export const Layout = () => {
     const navigate = useNavigate()
-    const isAuth = useTypedSelector(
-        (state) => state.auth.isAuth
-    )
-    const isLoading = useTypedSelector(
-        (state) => state.auth.isLoading
-    )
+    const { isAuth, isLoading } = useTypedSelector((state) => state.auth)
     const error = useTypedSelector((state) => state.auth.error)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(isAuthMethod({}))
     }, [])
-    
+
     useEffect(() => {
-        if(!isLoading && !isAuth) {
+        if (!isLoading && !isAuth) {
             navigate('/auth')
         }
     }, [isAuth, isLoading])
-    
+
     return (
         <>
             <Header />

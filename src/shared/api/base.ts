@@ -16,8 +16,10 @@ class ApiInstance {
         })
     }
 
-    async get<T>(endpoint: string): Promise<T> {
-        const response: AxiosResponse<T> = await this.axios.get(endpoint)
+    async get<T>(endpoint: string, params: object = {}): Promise<T> {
+        const response: AxiosResponse<T> = await this.axios.get(endpoint, {
+            ...params,
+        })
         return response.data
     }
 

@@ -21,7 +21,7 @@ const initialState: IBondsState = {
     currentPageBonds: [],
     pagination: {
         currentPage: 1,
-        totalPages: 1,
+        totalPages: 0,
     },
     isLoading: false,
     error: null,
@@ -56,6 +56,7 @@ const bondsSlice = createSlice({
             .addCase(fetchBonds.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.error = null
+                state.bonds = action.payload
                 state.bonds = action.payload
                 state.pagination.currentPage = 1
                 state.currentPageBonds = action.payload.slice(

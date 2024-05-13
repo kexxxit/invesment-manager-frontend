@@ -1,1 +1,1 @@
-export const BONDS_QUANTITY_PER_PAGE = 6
+export const BONDS_QUANTITY_PER_PAGE = 10

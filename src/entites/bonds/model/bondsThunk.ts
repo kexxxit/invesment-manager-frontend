@@ -1,16 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { IBond } from '../../../shared/types'
-import {
-    setTotalPagesAction,
-} from './bondsSlice'
+import { IBond, IBondsQueryParams } from '../../../shared/types'
+import { setTotalPagesAction } from './bondsSlice'
 import { getBonds } from '../../../shared/api/bonds'
 import { BONDS_QUANTITY_PER_PAGE } from '../../../shared/consts'
 
-export const fetchBonds = createAsyncThunk<IBond[]>(
+export const fetchBonds = createAsyncThunk<IBond[], IBondsQueryParams>(
     'bonds/fetchBonds',
-    async (_, thunkAPI) => {
+    async (params, thunkAPI) => {
         try {
-            const response = await getBonds()
+            const response = await getBonds(
+                params.search,
+                params.riskLevel,
+                params.sector
+            )
             const bonds = response
             const totalPages = Math.ceil(bonds.length / BONDS_QUANTITY_PER_PAGE)
             thunkAPI.dispatch(setTotalPages(totalPages))
