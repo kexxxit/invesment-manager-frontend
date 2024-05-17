@@ -19,8 +19,9 @@
         column-gap: 40px;
         grid-template-columns: 1fr 3fr 2fr 2fr 2fr 2fr;
         margin: 10px 0;
+        margin-right: 10px;
 
-        :first-child {
+        &--margin {
             width: 76px;
         }
 
@@ -32,6 +33,26 @@
     &__items {
         height: 100%;
         overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #ff8049;
+            border-radius: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: #e8e3e1;
+            border-radius: 5px;
+        }
+
+        scrollbar-width: thin;
+        scrollbar-color: #ff8049 #e8e3e1;
+
+        -webkit-scrollbar-width: thin;
+        -webkit-scrollbar-color: #ff8049 #e8e3e1;
     }
 
     h3 {
@@ -39,7 +60,6 @@
     }
 
     &__pagination {
-
     }
 }
 

@@ -4,11 +4,9 @@ import {
     getRecomendedBonds,
 } from '../../../shared/api/recomendedBonds'
 
-interface IFetchBondsList {}
-
 export const fetchRecomendedBonds = createAsyncThunk<
     IBond[],
-    IFetchBondsList,
+    void,
     { readonly rejectValue: RejectedDataType }
 >('bonds/recomended', async (_, thunkAPI) => {
     try {

@@ -3,12 +3,14 @@ import {configureStore} from "@reduxjs/toolkit";
 import { recomendedBondsReducer } from "../../entites/recomendedBonds";
 import { authReducer } from "../../entites/auth";
 import { bondsReducer } from "../../entites/bonds";
+import { accountsReducer } from "../../entites/accounts";
 
 export const store = configureStore({
     reducer: {
         recomendedBonds: recomendedBondsReducer,
         auth: authReducer,
-        bonds: bondsReducer
+        bonds: bondsReducer,
+        accounts: accountsReducer
     },
 })
 

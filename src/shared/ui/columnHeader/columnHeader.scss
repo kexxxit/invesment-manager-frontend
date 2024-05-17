@@ -1,0 +1,20 @@
+.column-header {
+    cursor: pointer;
+    transition: color 0.5s;
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 14px;
+        height: 14px;
+    }
+    h3 {
+        text-wrap: nowrap;
+    }
+}
+
+.column-header:hover {
+    h3 {
+        color: rgba(0, 0, 0, 0.8);
+    }
+}

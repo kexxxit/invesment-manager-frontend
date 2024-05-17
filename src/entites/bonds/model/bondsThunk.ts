@@ -11,7 +11,8 @@ export const fetchBonds = createAsyncThunk<IBond[], IBondsQueryParams>(
             const response = await getBonds(
                 params.search,
                 params.riskLevel,
-                params.sector
+                params.sector,
+                params.sortBy
             )
             const bonds = response
             const totalPages = Math.ceil(bonds.length / BONDS_QUANTITY_PER_PAGE)

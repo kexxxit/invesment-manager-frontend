@@ -2,13 +2,20 @@ import './header.scss'
 import { BurgerButton } from '../../../shared/ui/burgerButton'
 import { Dropdown, IOption } from '../../../shared/ui/dropdown'
 import { RadioButton } from '../../../shared/ui/radioButton'
+import { useTypedSelector } from '../../../shared/lib/store/useTypesSelector'
+import { setCurrentAccount } from '../../../entites/accounts'
+import { useAppDispatch } from '../../../shared/lib/store/useAppDispatch'
 
 export const Header = () => {
-    const dropdownOptions: IOption[] = [
-        { value: 'ACC1', label: 'account 1' },
-        { value: 'ACC2', label: 'account 2' },
-        { value: 'ACC3', label: 'account 3' },
-    ]
+    const dispatch = useAppDispatch()
+    const { accounts, balance, currentAccount, error, isLoading } = useTypedSelector(
+        (state) => state.accounts
+    )
+
+    const dropdownOptions: IOption[] = accounts.map((account) => ({
+        label: account.name,
+        value: account.id,
+    }))
 
     const radioOptions: IOption[] = [
         { value: 'RADIO_LEFT', label: 'Руч.' },
@@ -16,7 +23,11 @@ export const Header = () => {
     ]
 
     const onDropdownValueChange = (option: IOption) => {
-        console.log(option.value)
+        const chosedAccount = accounts.find(
+            (account) => account.id === option.value
+        )
+        if (chosedAccount) dispatch(setCurrentAccount(chosedAccount))
+        console.log(chosedAccount)
     }
 
     const onRadioButtonClick = (option: IOption) => {
@@ -35,7 +46,7 @@ export const Header = () => {
                     style='white'
                 />
             </div>
-            <div className='header__elem header__balance'>{'100000 руб.'}</div>
+            <div className='header__elem header__balance'>{`${balance} руб.`}</div>
             <div className='header__elem header__radio-button'>
                 <RadioButton
                     itemLeft={radioOptions[0]}

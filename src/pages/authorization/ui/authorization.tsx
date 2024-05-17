@@ -10,9 +10,7 @@ import { useNavigate } from 'react-router-dom'
 export const Authorization = () => {
     const [token, setToken] = useState<string>('')
     const navigate = useNavigate()
-    const isAuth = useTypedSelector((state) => state.auth.isAuth)
-    const isLoading = useTypedSelector((state) => state.auth.isLoading)
-    const error = useTypedSelector((state) => state.auth.error)
+    const { isAuth, isLoading, error } = useTypedSelector((state) => state.auth)
     const dispatch = useAppDispatch()
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,16 +22,12 @@ export const Authorization = () => {
     }
 
     useEffect(() => {
-        dispatch(isAuthMethod({}))
+        dispatch(isAuthMethod())
     }, [])
 
     useEffect(() => {
         if (isAuth) navigate('/')
     }, [isAuth])
-
-    useEffect(() => {
-        console.log(error)
-    }, [error])
 
     return (
         <section className='auth'>
@@ -45,6 +39,7 @@ export const Authorization = () => {
                         label='Токен авторизации Tinkoff invest api'
                         onChange={handleChange}
                     />
+                    <div>{error?.messageError}</div>
                     <Button onClick={handleClick}>Войти</Button>
                 </div>
             </div>

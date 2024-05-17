@@ -11,7 +11,6 @@ type Props = {
     options: IOption[]
     onSelect: (option: IOption) => void
     style: 'gray' | 'white'
-    defaultValue?: string
 }
 
 export const Dropdown: FC<Props> = ({
@@ -51,18 +50,25 @@ export const Dropdown: FC<Props> = ({
         }
     }, [isOpen])
 
+    useEffect(() => {
+        if (!option && options.length > 0) {
+            setOption(options[0])
+        }
+    }, [options])
+
     return (
         <div className='dropdown' ref={dropdownRef}>
+            
             <div
                 className={
                     (style === 'gray'
                         ? 'dropdown__button-gray'
-                        : 'dropdown__button') + (option.value === DEFAULT_DROPDOWN_VALUE
+                        : 'dropdown__button') + (option?.value === DEFAULT_DROPDOWN_VALUE
                           ? ' dropdown__text-color-gray'
                           : '')
                 }
                 onClick={toggleDropdown}>
-                {option.label}
+                {option?.label}
             </div>
             {isOpen && (
                 <div className='dropdown__menu'>

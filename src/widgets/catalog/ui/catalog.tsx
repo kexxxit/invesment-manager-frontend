@@ -9,6 +9,7 @@ import { TextField } from '../../../shared/ui/textField'
 import { Dropdown } from '../../../shared/ui/dropdown'
 import { IBondsQueryParams, IOption } from '../../../shared/types'
 import { DEFAULT_DROPDOWN_VALUE } from '../../../shared/consts'
+import { ColumnHeader } from '../../../shared/ui/columnHeader/columnHeader'
 
 export const Catalog: FC = () => {
     const { currentPageBonds, isLoading, pagination, error } = useTypedSelector(
@@ -20,14 +21,16 @@ export const Catalog: FC = () => {
         search: undefined,
         riskLevel: undefined,
         sector: undefined,
+        sortBy: undefined,
     })
-
+    
     const bondsItems = currentPageBonds.map((bond) => (
         <BondItem key={bond.uid} bond={bond} />
     ))
 
     useEffect(() => {
         dispatch(fetchBonds(queryParams))
+        console.log("sads")
     }, [queryParams])
 
     useEffect(() => {
@@ -71,7 +74,13 @@ export const Catalog: FC = () => {
                     ? undefined
                     : Number(riskLevel.value),
         }))
-        console.log(riskLevel)
+    }
+
+    const handleColumnHeaderClick = (sortBy: string) => {
+        setQueryParams((prev) => ({
+            ...prev,
+            sortBy: sortBy,
+        }))
     }
 
     const ratingOptions: IOption[] = [
@@ -101,12 +110,27 @@ export const Catalog: FC = () => {
                 />
             </div>
             <div className='catalog__header'>
-                <div></div>
+                <div className='catalog__header--margin'></div>
                 <h3>Облигация</h3>
                 <h3>Отрасль</h3>
-                <h3>Дата погащения</h3>
-                <h3>Доходнсть</h3>
-                <h3>Цена</h3>
+                <ColumnHeader
+                    label='Дата погащения'
+                    sortedFieldName='MaturityDate'
+                    onClick={handleColumnHeaderClick}
+                    sortBy={queryParams.sortBy}
+                />
+                <ColumnHeader
+                    label='Доходнсть'
+                    sortedFieldName='YieldToMaturity'
+                    onClick={handleColumnHeaderClick}
+                    sortBy={queryParams.sortBy}
+                />
+                <ColumnHeader
+                    label='Цена'
+                    sortedFieldName='Price'
+                    onClick={handleColumnHeaderClick}
+                    sortBy={queryParams.sortBy}
+                />
             </div>
             <div className='catalog__items'>{bondsItems}</div>
             <div className='catalog__pagination'>

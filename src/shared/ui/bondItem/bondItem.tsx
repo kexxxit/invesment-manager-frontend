@@ -12,9 +12,9 @@ interface BondItemProps {
 
 export const BondItem: FC<BondItemProps> = ({ bond }) => {
     const ratingStars = [
-        <img src={StarFilled} alt='' />,
-        <img src={bond.riskLevel <= 2 ? StarFilled : Star} alt='' />,
-        <img src={bond.riskLevel === 1 ? StarFilled : Star} alt='' />,
+        <img key={0} src={StarFilled} alt='' />,
+        <img key={1} src={bond.riskLevel <= 2 ? StarFilled : Star} alt='' />,
+        <img key={2} src={bond.riskLevel === 1 ? StarFilled : Star} alt='' />,
     ]
 
     return (

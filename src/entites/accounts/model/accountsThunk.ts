@@ -1,14 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { ErrorType, RejectedDataType } from '../../../shared/types'
-import { authorize, isAutorized } from '../../../shared/api/auth'
+import { AccountBalance, ErrorType, IAccount, RejectedDataType } from '../../../shared/types'
+import { getAccounts } from '../../../shared/api/accounts'
+import { getBalance } from '../../../shared/api/getBalance'
 
-export const auth = createAsyncThunk<
-    {},
-    {"Token": string},
+export const getAccountsThunk = createAsyncThunk<
+    { accounts: IAccount[] },
+    void,
     { readonly rejectValue: RejectedDataType }
->('auth', async (req, thunkAPI) => {
+>('accounts', async (_, thunkAPI) => {
     try {
-        const response = await authorize(req)
+        const response = await getAccounts()
         return response
     } catch (err: unknown) {
         const knownError = err as ErrorType
@@ -20,13 +21,13 @@ export const auth = createAsyncThunk<
     }
 })
 
-export const isAuthMethod = createAsyncThunk<
-    {},
-    void,
+export const getAccountBalanceThunk = createAsyncThunk<
+    AccountBalance,
+    string,
     { readonly rejectValue: RejectedDataType }
->('isAuth', async (_, thunkAPI) => {
+>('balance', async (data, thunkAPI) => {
     try {
-        const response = await isAutorized()
+        const response = await getBalance(data)
         return response
     } catch (err: unknown) {
         const knownError = err as ErrorType

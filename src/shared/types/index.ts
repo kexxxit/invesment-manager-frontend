@@ -1,4 +1,6 @@
 export type { IOption } from './option'
 export type { IBond } from './bond'
-export { type ErrorType, type RejectedDataType } from './errorTypes'
-export { type IBondsQueryParams } from './bondQueryParams'
+export type { ErrorType, RejectedDataType } from './errorTypes'
+export type { IBondsQueryParams } from './bondQueryParams'
+export type { IAccount, AccessLevel, AccountStatus } from './account'
+export type { AccountBalance } from './accountBalance'

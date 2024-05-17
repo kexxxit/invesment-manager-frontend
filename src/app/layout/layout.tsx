@@ -5,15 +5,18 @@ import { useEffect } from 'react'
 import { useTypedSelector } from '../../shared/lib/store/useTypesSelector'
 import { useAppDispatch } from '../../shared/lib/store/useAppDispatch'
 import { isAuthMethod } from '../../entites/auth'
+import { getAccountsThunk } from '../../entites/accounts'
+import { getAccountBalanceThunk } from '../../entites/accounts/model/accountsThunk'
 
 export const Layout = () => {
     const navigate = useNavigate()
-    const { isAuth, isLoading } = useTypedSelector((state) => state.auth)
-    const error = useTypedSelector((state) => state.auth.error)
+    const { isAuth, isLoading, error } = useTypedSelector((state) => state.auth)
+    const { currentAccount } = useTypedSelector((state) => state.accounts)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(isAuthMethod({}))
+        dispatch(isAuthMethod())
+        dispatch(getAccountsThunk())
     }, [])
 
     useEffect(() => {
@@ -21,6 +24,10 @@ export const Layout = () => {
             navigate('/auth')
         }
     }, [isAuth, isLoading])
+
+    useEffect(() => {
+        if (currentAccount) dispatch(getAccountBalanceThunk(currentAccount.id))
+    }, [currentAccount])
 
     return (
         <>

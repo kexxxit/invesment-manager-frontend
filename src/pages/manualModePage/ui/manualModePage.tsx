@@ -13,7 +13,7 @@ export const ManualModePage: FC = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(fetchRecomendedBonds({}))
+        dispatch(fetchRecomendedBonds())
     }, [])
 
     return (
