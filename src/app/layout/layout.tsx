@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../shared/lib/store/useAppDispatch'
 import { isAuthMethod } from '../../entites/auth'
 import { getAccountsThunk } from '../../entites/accounts'
 import { getAccountBalanceThunk } from '../../entites/accounts/model/accountsThunk'
+import { Notification } from '../../widgets/notification'
 
 export const Layout = () => {
     const navigate = useNavigate()
@@ -35,6 +36,7 @@ export const Layout = () => {
 
             <main className='layout__content'>
                 <Outlet />
+                <Notification />
             </main>
 
             {/* <Footer className='layout__footer' /> */}

@@ -1,0 +1,34 @@
+.strategies {
+    height: 100%;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+
+    &__header {
+        color: white;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+
+        button {
+            margin-left: 10px;
+            padding: 0 0 2px 0;
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+            text-align: center;
+            vertical-align: middle;
+        }
+    }
+
+    &__content {
+        margin-top: 10px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}

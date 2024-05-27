@@ -8,14 +8,20 @@ import { useAppDispatch } from '../../../shared/lib/store/useAppDispatch'
 
 export const Header = () => {
     const dispatch = useAppDispatch()
-    const { accounts, balance, currentAccount, error, isLoading } = useTypedSelector(
-        (state) => state.accounts
-    )
+    const { accounts, balance, currentAccount, error, isLoading } =
+        useTypedSelector((state) => state.accounts)
 
     const dropdownOptions: IOption[] = accounts.map((account) => ({
         label: account.name,
         value: account.id,
     }))
+
+    const currentOption: IOption | undefined = currentAccount
+        ? {
+              label: currentAccount?.name,
+              value: currentAccount?.id,
+          }
+        : undefined
 
     const radioOptions: IOption[] = [
         { value: 'RADIO_LEFT', label: 'Руч.' },
@@ -41,6 +47,7 @@ export const Header = () => {
             </div>
             <div className='header__elem header__account'>
                 <Dropdown
+                    currentValue={currentOption}
                     options={dropdownOptions}
                     onSelect={onDropdownValueChange}
                     style='white'

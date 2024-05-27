@@ -1,0 +1,19 @@
+.profit {
+    border-radius: 99px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+    justify-content: center;
+    width: 100%;
+    height: 25px;
+    
+    &-green {
+        background-color: #00A127;
+    }
+
+    &-red {
+        background-color: #D66855;
+    }
+}

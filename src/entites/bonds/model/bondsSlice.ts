@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IBond } from '../../../shared/types'
+import { IBond, IBondsQueryParams } from '../../../shared/types'
 import { fetchBonds } from './bondsThunk'
 import { BONDS_QUANTITY_PER_PAGE } from '../../../shared/consts'
 
@@ -13,6 +13,7 @@ interface IBondsState {
     currentPageBonds: IBond[]
     pagination: IPagination
     isLoading: boolean
+    queryParams: IBondsQueryParams
     error: string | null
 }
 
@@ -22,6 +23,12 @@ const initialState: IBondsState = {
     pagination: {
         currentPage: 1,
         totalPages: 0,
+    },
+    queryParams: {
+        search: undefined,
+        riskLevel: undefined,
+        sector: undefined,
+        sortBy: undefined,
     },
     isLoading: false,
     error: null,
@@ -45,7 +52,34 @@ const bondsSlice = createSlice({
                 (action.payload - 1) * BONDS_QUANTITY_PER_PAGE,
                 action.payload * BONDS_QUANTITY_PER_PAGE
             )
-        }
+        },
+        setSortByAction: (state, action: PayloadAction<string | undefined>) => {
+            state.queryParams = {
+                ...state.queryParams,
+                sortBy: action.payload,
+            }
+        },
+        setRiskLevelAction: (
+            state,
+            action: PayloadAction<number | undefined>
+        ) => {
+            state.queryParams = {
+                ...state.queryParams,
+                riskLevel: action.payload,
+            }
+        },
+        setSectorAction: (state, action: PayloadAction<string | undefined>) => {
+            state.queryParams = {
+                ...state.queryParams,
+                sector: action.payload,
+            }
+        },
+        setSearchAction: (state, action: PayloadAction<string | undefined>) => {
+            state.queryParams = {
+                ...state.queryParams,
+                search: action.payload,
+            }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -60,7 +94,8 @@ const bondsSlice = createSlice({
                 state.bonds = action.payload
                 state.pagination.currentPage = 1
                 state.currentPageBonds = action.payload.slice(
-                    (state.pagination.currentPage - 1) * BONDS_QUANTITY_PER_PAGE,
+                    (state.pagination.currentPage - 1) *
+                        BONDS_QUANTITY_PER_PAGE,
                     state.pagination.currentPage * BONDS_QUANTITY_PER_PAGE
                 )
             })
@@ -74,6 +109,10 @@ const bondsSlice = createSlice({
 export const {
     setTotalPagesAction,
     setCurrentPageAction,
+    setSortByAction,
+    setRiskLevelAction,
+    setSearchAction,
+    setSectorAction,
 } = bondsSlice.actions
 
 export default bondsSlice.reducer

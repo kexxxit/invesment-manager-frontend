@@ -1,5 +1,4 @@
 .burger-button {
-
     cursor: pointer;
     display: grid;
     grid-template-columns: 1fr;
@@ -8,6 +7,48 @@
     height: 25px;
     align-items: center;
 
+    &__container {
+        position: relative;
+        width: 100%;
+    }
+
+    &__menu {
+        position: absolute;
+        top: 40px;
+        left: -20px;
+        width: 200px;
+        background-color: white;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+        z-index: 1000;
+        border-radius: 20px;
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        
+            li {
+              padding: 10px 20px;
+              border-bottom: 1px solid #ddd;
+        
+              &:last-child {
+                border-bottom: none;
+              }
+        
+              a {
+                color: #333;
+                text-decoration: none;
+                display: block;
+                font-size: 14px;
+        
+                &:hover {
+                  color: #FF8049;
+                }
+              }
+            }
+          }
+    }
+
     &__stick {
         width: 40px;
         height: 5px;
@@ -15,16 +56,19 @@
         border-radius: 99px;
         transition: all 0.3s ease, background-color 0.3s ease;
 
-        &__stick--top {
-            transform: none;
+        &--top__active {
+            position: absolute;
+            transform: rotate(45deg);
         }
 
-        &__stick--bottom {
-            transform: none;
+        &--bottom__active {
+            position: absolute;
+            transform: rotate(-45deg);
         }
 
-        &__stick--middle {
-            display: block;
+        &--middle__active {
+            position: absolute;
+            display: none;
         }
     }
 
@@ -36,19 +80,19 @@
     &:hover {
         .burger-button__stick {
             background-color: #FF8049; // укажите нужный цвет
-            position: absolute;        
+                
         }
 
-        .burger-button__stick--top {
-            transform: rotate(45deg);
-        }
+        // .burger-button__stick--top {
+        //     transform: rotate(45deg);
+        // }
       
-        .burger-button__stick--bottom {
-            transform: rotate(-45deg);
-        }
+        // .burger-button__stick--bottom {
+        //     transform: rotate(-45deg);
+        // }
         
-        .burger-button__stick--middle {
-            display: none;
-        }
+        // .burger-button__stick--middle {
+        //     display: none;
+        // }
     }
 }

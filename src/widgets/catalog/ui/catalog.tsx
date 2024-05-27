@@ -3,108 +3,143 @@ import './catalog.scss'
 import { useTypedSelector } from '../../../shared/lib/store/useTypesSelector'
 import { useAppDispatch } from '../../../shared/lib/store/useAppDispatch'
 import { BondItem } from '../../../shared/ui/bondItem'
-import { fetchBonds, setCurrentPageAction } from '../../../entites/bonds'
+import {
+    fetchBonds,
+    setCurrentPageAction,
+    setRiskLevelAction,
+    setSearchAction,
+    setSectorAction,
+    setSortByAction,
+} from '../../../entites/bonds'
 import ReactPaginate from 'react-paginate'
 import { TextField } from '../../../shared/ui/textField'
 import { Dropdown } from '../../../shared/ui/dropdown'
 import { IBondsQueryParams, IOption } from '../../../shared/types'
-import { DEFAULT_DROPDOWN_VALUE } from '../../../shared/consts'
+import {
+    DEFAULT_DROPDOWN_VALUE,
+    RATING_OPTIONS,
+    SECTOR_OPTIONS,
+} from '../../../shared/consts'
 import { ColumnHeader } from '../../../shared/ui/columnHeader/columnHeader'
+import { useNavigate } from 'react-router-dom'
 
 export const Catalog: FC = () => {
-    const { currentPageBonds, isLoading, pagination, error } = useTypedSelector(
-        (state) => state.bonds
-    )
+    const { currentPageBonds, isLoading, pagination, error, queryParams } =
+        useTypedSelector((state) => state.bonds)
+    const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    const [searchValue, setSearchValue] = useState<string>('')
-    const [queryParams, setQueryParams] = useState<IBondsQueryParams>({
-        search: undefined,
-        riskLevel: undefined,
-        sector: undefined,
-        sortBy: undefined,
-    })
-    
-    const bondsItems = currentPageBonds.map((bond) => (
-        <BondItem key={bond.uid} bond={bond} />
-    ))
+    // const [searchValue, setSearchValue] = useState<string>('')
+    // const [queryParams, setQueryParams] = useState<IBondsQueryParams>({
+    //     search: undefined,
+    //     riskLevel: undefined,
+    //     sector: undefined,
+    //     sortBy: undefined,
+    // })
 
     useEffect(() => {
         dispatch(fetchBonds(queryParams))
-        console.log("sads")
     }, [queryParams])
 
     useEffect(() => {
         console.log(currentPageBonds)
     }, [currentPageBonds])
 
+    const handleBondItemClick = (bondId: string) => {
+        navigate(`/${bondId}`)
+    }
+
+    const sector = SECTOR_OPTIONS.find(
+        (opt) => opt.value === queryParams.sector
+    )
+
+    const rating = RATING_OPTIONS.find(
+        (opt) => opt.value === String(queryParams.riskLevel)
+    )
+
     const handlePageChange = (data: { selected: number }) => {
         dispatch(setCurrentPageAction(data.selected + 1))
     }
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchValue(event.target.value)
-        setQueryParams((prev) => ({
-            ...prev,
-            search: event.target.value === '' ? undefined : event.target.value,
-        }))
+    // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setSearchValue(event.target.value)
+    //     setQueryParams((prev) => ({
+    //         ...prev,
+    //         search: event.target.value === '' ? undefined : event.target.value,
+    //     }))
+    // }
+
+    const handleChange = (query: string) => {
+        // setSearchValue(query)
+        // setQueryParams((prev) => ({
+        //     ...prev,
+        //     search: query === '' ? undefined : query,
+        // }))
+        dispatch(setSearchAction(query === '' ? undefined : query))
     }
 
     const handleOnSelectSector = (sector: IOption) => {
-        setQueryParams((prev) => ({
-            ...prev,
-            sector:
+        // setQueryParams((prev) => ({
+        //     ...prev,
+        //     sector:
+        //         sector.value === DEFAULT_DROPDOWN_VALUE
+        //             ? undefined
+        //             : sector.value,
+        // }))
+        dispatch(
+            setSectorAction(
                 sector.value === DEFAULT_DROPDOWN_VALUE
                     ? undefined
-                    : sector.value,
-        }))
+                    : sector.value
+            )
+        )
     }
 
-    const sectorOptions: IOption[] = [
-        { value: DEFAULT_DROPDOWN_VALUE, label: 'Сектор' },
-        { value: 'goverment', label: 'goverment' },
-        { value: 'financial', label: 'financial' },
-        { value: 'other', label: 'other' },
-    ]
-
     const handleOnSelectRating = (riskLevel: IOption) => {
-        setQueryParams((prev) => ({
-            ...prev,
-            riskLevel:
+        // setQueryParams((prev) => ({
+        //     ...prev,
+        //     riskLevel:
+        //         riskLevel.value === DEFAULT_DROPDOWN_VALUE
+        //             ? undefined
+        //             : Number(riskLevel.value),
+        // }))
+        dispatch(
+            setRiskLevelAction(
                 riskLevel.value === DEFAULT_DROPDOWN_VALUE
                     ? undefined
-                    : Number(riskLevel.value),
-        }))
+                    : Number(riskLevel.value)
+            )
+        )
     }
 
     const handleColumnHeaderClick = (sortBy: string) => {
-        setQueryParams((prev) => ({
-            ...prev,
-            sortBy: sortBy,
-        }))
+        // setQueryParams((prev) => ({
+        //     ...prev,
+        //     sortBy: sortBy,
+        // }))
+        dispatch(setSortByAction(sortBy))
     }
 
-    const ratingOptions: IOption[] = [
-        { value: DEFAULT_DROPDOWN_VALUE, label: 'Рейтинг' },
-        { value: '1', label: 'Высокий' },
-        { value: '2', label: 'Средний' },
-        { value: '3', label: 'Низкий' },
-    ]
+    const bondsItems = currentPageBonds.map((bond) => (
+        <BondItem onClick={handleBondItemClick} key={bond.uid} bond={bond} />
+    ))
 
     return (
         <section className='catalog'>
             <div className='catalog__filters'>
                 <TextField
+                    defaultValue={queryParams.search ? queryParams.search : ''}
                     label='Поиск'
                     onChange={handleChange}
-                    value={searchValue}
                 />
                 <Dropdown
-                    options={sectorOptions}
+                    currentValue={sector ? sector : SECTOR_OPTIONS[0]}
+                    options={SECTOR_OPTIONS}
                     onSelect={handleOnSelectSector}
                     style='gray'
                 />
                 <Dropdown
-                    options={ratingOptions}
+                    currentValue={rating ? rating : RATING_OPTIONS[0]}
+                    options={RATING_OPTIONS}
                     onSelect={handleOnSelectRating}
                     style='gray'
                 />

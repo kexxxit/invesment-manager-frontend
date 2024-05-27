@@ -1,0 +1,102 @@
+.bond-page {
+    height: 100%;
+    margin-bottom: 10px;
+
+    &--wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto 1fr;
+        height: 100%;
+        gap: 10px 10px;
+        grid-template-areas:
+            'card card card'
+            'info info buy';
+    }
+
+    &--card {
+        background-color: white;
+        border-radius: 20px;
+        padding: 20px;
+        grid-area: card;
+
+        img {
+            width: 130px;
+            height: 130px;
+            margin: 0;
+        }
+    }
+
+    &--info {
+        grid-area: info;
+        background-color: white;
+        border-radius: 20px;
+        padding: 20px;
+        overflow-y: hidden;
+
+        &__table {
+            height: calc(100% - 30px);
+            overflow-y: scroll;
+            margin-top: 10px;
+            scrollbar-width: thin;
+
+            thead {
+                position: sticky;
+                top: 0;
+            }
+
+            &--active_elem {
+                h3 {
+                    color: rgba(0, 0, 0, 0.6);
+                }
+            }
+        }
+
+        h3 {
+            font-weight: 600;
+        }
+    }
+
+    &--buy {
+        grid-area: buy;   
+
+        &__title {
+            margin-bottom: 10px;
+        }
+        
+        &__button {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        &__container {
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        &__total {
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 10px;
+            color: rgb(53, 53, 53);
+            background-color: #e8e3e1;
+
+            &--item {
+                display: flex;
+                justify-content: space-between;
+
+                &-title {
+                    font-weight: 400;
+                }
+
+                &-price {
+                    font-weight: 700;
+                }
+            }
+
+            
+        }
+    }
+}

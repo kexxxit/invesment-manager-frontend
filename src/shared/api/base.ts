@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
 
 export const API_URL = 'http://localhost:5265/api/'
+// export const API_URL = 'https://a26938-927f.x.d-f.pw/api/'
 
 class ApiInstance {
     private axios: AxiosInstance
@@ -12,6 +13,7 @@ class ApiInstance {
             withCredentials: true,
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
             },
         })
     }

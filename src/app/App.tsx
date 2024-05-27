@@ -1,9 +1,11 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { Layout } from './layout'
 import { ManualModePage } from '../pages/manualModePage'
 import { Authorization } from '../pages/authorization/ui/authorization'
+import { Bond } from '../pages/bond'
+import { Strategies } from '../pages/strategies'
 
 function App() {
     return (
@@ -13,6 +15,8 @@ function App() {
                     <Route path={'/'} element={<Layout />}>
                         <Route index element={<ManualModePage />} />
                         <Route path={'/auth'} element={<Authorization />} />
+                        <Route path={'/strategies'} element={<Strategies />} />
+                        <Route path={':bondId'} element={<Bond />}/>
                     </Route>
                 </Routes>
             </div>

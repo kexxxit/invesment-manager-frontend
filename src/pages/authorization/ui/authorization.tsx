@@ -13,8 +13,12 @@ export const Authorization = () => {
     const { isAuth, isLoading, error } = useTypedSelector((state) => state.auth)
     const dispatch = useAppDispatch()
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setToken(event.target.value)
+    // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setToken(event.target.value)
+    // }
+
+    const handleChange = (query: string) => {
+        setToken(query)
     }
 
     const handleClick = () => {
@@ -35,12 +39,14 @@ export const Authorization = () => {
             <div className='auth__form'>
                 <div className='auth__wrapper'>
                     <TextField
-                        value={token}
+                        defaultValue={token}
                         label='Токен авторизации Tinkoff invest api'
                         onChange={handleChange}
                     />
                     <div>{error?.messageError}</div>
-                    <Button onClick={handleClick}>Войти</Button>
+                    <Button isDisabled={isLoading} onClick={handleClick}>
+                        Войти
+                    </Button>
                 </div>
             </div>
         </section>

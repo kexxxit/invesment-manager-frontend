@@ -20,12 +20,14 @@ export const RecomendedBond: FC<PropsType> = ({ bond }) => {
         <div className='recomendation'>
             <img
                 className='recomendation__logo'
-                src={ createLogoUrl(bond.logoName, LogoSize.Small) }
+                src={createLogoUrl(bond.logoName, LogoSize.Small)}
                 alt=''
             />
-            <div>
-                <h1 className='recomendation__name'>{bond.name}</h1>
-                <h3>{bond.isin}</h3>
+            <div className='recomendation__info'>
+                <div>
+                    <h1 className='recomendation__name'>{bond.name}</h1>
+                    <h3>{bond.isin}</h3>
+                </div>
                 <div className='recomendation__specifications'>
                     <div>
                         <h3>Цена</h3>
@@ -39,26 +41,33 @@ export const RecomendedBond: FC<PropsType> = ({ bond }) => {
             </div>
             <div className='recomendation__yield'>
                 <h2>Доходность за приобретенную единицу</h2>
-                {yieldPerPeriods ? <div className='recomendation__yield--spec'>
-                    <div>
-                        <h2>{yieldPerPeriods.firstPeriod.yield} руб.</h2>
-                        <h2>
-                            За {yieldPerPeriods.firstPeriod.mounthsNumber} мес.
-                        </h2>
+                {yieldPerPeriods ? (
+                    <div className='recomendation__yield--spec'>
+                        <div>
+                            <h2>{yieldPerPeriods.firstPeriod.yield} руб.</h2>
+                            <h2>
+                                За {yieldPerPeriods.firstPeriod.mounthsNumber}{' '}
+                                мес.
+                            </h2>
+                        </div>
+                        <div>
+                            <h2>{yieldPerPeriods.secondPeriod.yield} руб.</h2>
+                            <h2>
+                                За {yieldPerPeriods.secondPeriod.mounthsNumber}{' '}
+                                мес.
+                            </h2>
+                        </div>
+                        <div>
+                            <h2>{yieldPerPeriods.thirdPeriod.yield} руб.</h2>
+                            <h2>
+                                За {yieldPerPeriods.thirdPeriod.mounthsNumber}{' '}
+                                мес.
+                            </h2>
+                        </div>
                     </div>
-                    <div>
-                        <h2>{yieldPerPeriods.secondPeriod.yield} руб.</h2>
-                        <h2>
-                            За {yieldPerPeriods.secondPeriod.mounthsNumber} мес.
-                        </h2>
-                    </div>
-                    <div>
-                        <h2>{yieldPerPeriods.thirdPeriod.yield} руб.</h2>
-                        <h2>
-                            За {yieldPerPeriods.thirdPeriod.mounthsNumber} мес.
-                        </h2>
-                    </div>
-                </div> : <div/>}
+                ) : (
+                    <div />
+                )}
             </div>
         </div>
     )

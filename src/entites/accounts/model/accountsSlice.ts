@@ -1,7 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { IAccount, RejectedDataType } from '../../../shared/types'
 import { getAccountBalanceThunk, getAccountsThunk } from './accountsThunk'
-import { getBalance } from '../../../shared/api/getBalance'
 
 export interface IAuthState {
     /** Accounts array. */

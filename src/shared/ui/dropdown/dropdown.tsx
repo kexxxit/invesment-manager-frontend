@@ -8,18 +8,22 @@ export interface IOption {
 }
 
 type Props = {
+    currentValue: IOption | undefined
     options: IOption[]
     onSelect: (option: IOption) => void
     style: 'gray' | 'white'
 }
 
 export const Dropdown: FC<Props> = ({
+    currentValue,
     options,
     onSelect,
     style,
 }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
-    const [option, setOption] = useState<IOption>(options[0])
+    const [option, setOption] = useState<IOption>(
+        currentValue ? currentValue : options[0]
+    )
 
     const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -58,14 +62,14 @@ export const Dropdown: FC<Props> = ({
 
     return (
         <div className='dropdown' ref={dropdownRef}>
-            
             <div
                 className={
                     (style === 'gray'
                         ? 'dropdown__button-gray'
-                        : 'dropdown__button') + (option?.value === DEFAULT_DROPDOWN_VALUE
-                          ? ' dropdown__text-color-gray'
-                          : '')
+                        : 'dropdown__button') +
+                    (option?.value === DEFAULT_DROPDOWN_VALUE
+                        ? ' dropdown__text-color-gray'
+                        : '')
                 }
                 onClick={toggleDropdown}>
                 {option?.label}
@@ -77,7 +81,9 @@ export const Dropdown: FC<Props> = ({
                             <li
                                 key={option.value}
                                 onClick={() => handleSelect(option)}>
-                                {option.value === DEFAULT_DROPDOWN_VALUE ? '-' : option.label}
+                                {option.value === DEFAULT_DROPDOWN_VALUE
+                                    ? '-'
+                                    : option.label}
                             </li>
                         ))}
                     </ul>

@@ -1,0 +1,86 @@
+.strategy {
+    height: 260px;
+    background-color: #E8E3E1;
+    border-radius: 20px;
+    padding: 20px;
+    min-width: 60px;
+    font-weight: bold;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    &__header {
+        display: grid;
+        justify-content: center;
+        gap: 5px;
+        grid-template-columns: 0.5fr 1fr 0.5fr;
+        align-items: center;
+
+        &-img {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+        }
+
+        h1 {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        img {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    &__content {
+        margin-top: 20px;
+
+        &--item {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            margin-top: 10px;
+
+            h3 {
+                font-size: 16px;
+            }
+
+            &-title {
+                display: flex;
+                justify-content: flex-end;
+                margin-right: 5px;
+                font-weight: 500;
+                color: #000000a9;
+            }
+        }
+    }
+
+    &__buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+
+        &--delete {
+            width: 100%;
+            .button {
+                width: 100%;
+                background-color: #d66855cc;
+
+                &:hover {
+                    background-color: #D66855;
+                }
+            }
+
+            
+        }
+    }
+}
+
+.profit-text-color-red {
+    color: #D66855
+}
+
+.profit-text-color-green {
+    color: #00A127
+}

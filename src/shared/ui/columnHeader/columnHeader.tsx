@@ -29,6 +29,11 @@ export const ColumnHeader: FC<IColumnHeaderProps> = ({
     const [sortType, setSortType] = useState<SortType>(SortType.None)
 
     useEffect(() => {
+        if (sortBy && sortBy.includes(sortedFieldName)) {
+            sortBy.includes(SortType.Asc)
+                ? setSortType(SortType.Asc)
+                : setSortType(SortType.Desc)
+        }
         if (!sortBy || !sortBy.includes(sortedFieldName))
             setSortType(SortType.None)
     }, [sortBy])

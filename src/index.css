@@ -16,6 +16,12 @@ body {
     background: linear-gradient(to bottom left, #67c493, 30%, #304358);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    scrollbar-width: thin;
+    scrollbar-color: #ff8049 #e8e3e1;
+
+    -webkit-scrollbar-width: thin;
+    -webkit-scrollbar-color: #ff8049 #e8e3e1;
 }
 
 input,
@@ -27,6 +33,21 @@ a {
     font-variation-settings: 'slnt' 0;
     font-weight: 700;
     font-size: 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
 }
 
 h1,
@@ -56,3 +77,5 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
 }
+
+

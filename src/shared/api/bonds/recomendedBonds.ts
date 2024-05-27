@@ -15,6 +15,5 @@ export const getBonds = (
         sector,
         sortBy
     }
-    console.log(params)
     return apiInstance.get(`${BASE_URL}`, { params })
 }
