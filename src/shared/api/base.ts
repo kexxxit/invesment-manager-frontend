@@ -29,6 +29,18 @@ class ApiInstance {
         const response: AxiosResponse<U> = await this.axios.post(endpoint, data)
         return response.data
     }
+
+    async put<T, U>(endpoint: string, data: T): Promise<U> {
+        const response: AxiosResponse<U> = await this.axios.put(endpoint, data);
+        return response.data;
+    }
+
+    async delete(endpoint: string, params: object = {}): Promise<void> {
+        await this.axios.delete(endpoint, {
+            ...params,
+        });
+    }
+    
 }
 
 export const apiInstance = new ApiInstance()

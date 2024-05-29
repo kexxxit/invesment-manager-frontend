@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { IStrategy, IStrategyListItem, RejectedDataType } from '../../../shared/types'
-import { fetchStrategies } from './strategiesThunk'
+import {
+    IStrategy,
+    IStrategyListItem,
+    RejectedDataType,
+} from '../../../shared/types'
+import { fetchStrategies, toggleStrategyThunk } from './strategiesThunk'
 
 export interface IRecomendenBondsState {
     /** List of strategies. */
@@ -14,15 +18,13 @@ export interface IRecomendenBondsState {
 const initialState: IRecomendenBondsState = {
     strategies: [],
     isLoading: false,
-    error: null
+    error: null,
 }
 
 const strategiesSlice = createSlice({
     name: 'strategies',
     initialState,
-    reducers: {
-        
-    },
+    reducers: {},
     extraReducers: (builder) =>
         builder
             .addCase(fetchStrategies.pending, (state) => {
@@ -37,6 +39,12 @@ const strategiesSlice = createSlice({
             .addCase(fetchStrategies.rejected, (state, action) => {
                 state.isLoading = false
                 state.error = action.payload ?? null
+            })
+            .addCase(toggleStrategyThunk.fulfilled, (state, action) => {
+                const item = state.strategies.find(
+                    (strategy) => strategy.id === action.payload.taskId
+                )
+                if (item) item.isEnabled = action.payload.isEnabled
             }),
 })
 

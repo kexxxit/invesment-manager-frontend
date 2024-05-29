@@ -7,7 +7,7 @@ interface IProfitProps {
 
 export const Profit: FC<IProfitProps> = ({ profit }) => {
     return (
-        <div className={`profit ${profit < 0 ? 'profit-red' : 'profit-greed'}`}>
+        <div className={`profit ${profit < 0 ? 'profit-red' : 'profit-green'}`}>
             {`${profit > 0 ? '+' : ''}${profit.toFixed(2)}%`}
         </div>
     )

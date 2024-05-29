@@ -1,4 +1,7 @@
+export { default as strategiesReducer } from './model/strategiesSlice'
 export {
-    default as strategiesReducer
-} from './model/strategiesSlice'
-export { fetchStrategies } from './model/strategiesThunk'
+    fetchStrategies,
+    toggleStrategyThunk,
+    deleteStrategyThunk,
+    createStrategyThunk
+} from './model/strategiesThunk'

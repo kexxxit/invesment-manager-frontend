@@ -55,8 +55,9 @@ export const Dropdown: FC<Props> = ({
     }, [isOpen])
 
     useEffect(() => {
-        if (!option && options.length > 0) {
+        if (options.length > 0) {
             setOption(options[0])
+            onSelect(options[0])
         }
     }, [options])
 

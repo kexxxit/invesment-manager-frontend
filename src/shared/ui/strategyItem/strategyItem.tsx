@@ -3,9 +3,10 @@ import { IStrategy, Strategies } from '../../types'
 import './strategyItem.scss'
 import SettingsIcon from '../../assets/icons/settingsIcon.svg'
 import { Profit } from '../profit'
-import { useTypedSelector } from '../../lib/store/useTypesSelector'
 import { getRatingTitle } from '../../lib/ratingTitle'
 import { Button } from '../button'
+import { useAppDispatch } from '../../lib/store/useAppDispatch'
+import { deleteStrategyThunk, toggleStrategyThunk } from '../../../entites/strategies'
 
 interface StrategyItemProps {
     readonly strategy: IStrategy
@@ -13,18 +14,19 @@ interface StrategyItemProps {
 }
 
 export const StrategyItem: FC<StrategyItemProps> = ({ strategy }) => {
-    const { accounts } = useTypedSelector((state) => state.accounts)
+    const dispatch = useAppDispatch()
 
-    const accountName = accounts.find(
-        (account) => account.id === strategy.accountId
-    )?.name
     const balance = strategy.totalAmountBonds + strategy.totalAmountCurrencies
     const profit = balance * (strategy.expectedYield / 100)
     const ratingTitle = getRatingTitle(strategy.bondRating)
 
-    const deleteClickHandler = () => {}
+    const deleteClickHandler = () => {
+        dispatch(deleteStrategyThunk(strategy.id))
+    }
 
-    const startStopClickHandler = () => {}
+    const startStopClickHandler = () => {
+        dispatch(toggleStrategyThunk(strategy.id))
+    }
 
     return (
         <div className='strategy'>
@@ -42,7 +44,7 @@ export const StrategyItem: FC<StrategyItemProps> = ({ strategy }) => {
             <div className='strategy__content'>
                 <div className='strategy__content--item'>
                     <h3 className='strategy__content--item-title'>Счет:</h3>
-                    <h3>{accountName}</h3>
+                    <h3>{strategy.accountName}</h3>
                 </div>
                 <div className='strategy__content--item'>
                     <h3 className='strategy__content--item-title'>Рейтинг:</h3>
@@ -66,7 +68,7 @@ export const StrategyItem: FC<StrategyItemProps> = ({ strategy }) => {
             </div>
             <div className='strategy__buttons'>
                 <Button onClick={startStopClickHandler} isDisabled={false}>
-                    Стоп
+                    {strategy.isEnabled ? 'Стоп' : 'Старт'}
                 </Button>
                 <div className='strategy__buttons--delete'>
                     <Button onClick={deleteClickHandler} isDisabled={false}>

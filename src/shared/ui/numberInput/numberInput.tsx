@@ -4,19 +4,29 @@ import './numberInput.scss'
 interface NumberInputProps {
     placeholder?: string
     onChange: (value: SetStateAction<number>) => void
-    value: number
+    value: number,
+    max?: number
+    min?: number
 }
 
 export const NumberInput: FC<NumberInputProps> = ({
     placeholder,
     onChange,
     value,
+    max,
+    min
 }) => {
     const handleIncrement = () => {
+        if (max !== undefined && value >= max) {
+            return;
+        }
         onChange((prevValue) => prevValue + 1)
     }
 
     const handleDecrement = () => {
+        if (min !== undefined && value <= min) {
+            return;
+        }
         onChange((prevValue) => Math.max(prevValue - 1, 0))
     }
 
@@ -24,7 +34,13 @@ export const NumberInput: FC<NumberInputProps> = ({
         const inputValue = event.target.value
         const value = inputValue ? Number(inputValue) : 0
         const numericValue = isNaN(value) ? 0 : value
-        onChange(numericValue)
+        if (max !== undefined && numericValue > max) {
+            onChange(max);
+        } else if (min !== undefined && numericValue < min) {
+            onChange(min);
+        } else {
+            onChange(numericValue)
+        }
     }
 
     return (

@@ -6,9 +6,10 @@ import { LogoSize, createLogoUrl } from '../../lib/logo'
 
 type PropsType = {
     bond: IBond
+    readonly onClick?: (id: string) => void
 }
 
-export const RecomendedBond: FC<PropsType> = ({ bond }) => {
+export const RecomendedBond: FC<PropsType> = ({ bond, onClick }) => {
     const [yieldPerPeriods, setYieldPerPeriods] =
         useState<IYieldByPeriods | null>(null)
 
@@ -17,7 +18,9 @@ export const RecomendedBond: FC<PropsType> = ({ bond }) => {
     }, [bond])
 
     return (
-        <div className='recomendation'>
+        <div
+            onClick={() => (onClick ? onClick(bond.uid) : null)}
+            className={`recomendation ${onClick ? 'recomendation__clickable' : ''}`}>
             <img
                 className='recomendation__logo'
                 src={createLogoUrl(bond.logoName, LogoSize.Small)}

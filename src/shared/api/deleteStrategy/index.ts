@@ -1,0 +1,1 @@
+export { deleteStrategy } from './deleteStrategy'

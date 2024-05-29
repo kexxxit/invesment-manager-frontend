@@ -18,6 +18,8 @@ export {
 export {
     type IStrategy,
     type IStrategyListItem,
+    type IStrategyRequest,
     BondRiskLevel,
     Strategies,
 } from './strategy'
+export type { ILink } from './link'

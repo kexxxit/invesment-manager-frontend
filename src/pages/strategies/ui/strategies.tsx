@@ -1,10 +1,11 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Button } from '../../../shared/ui/button'
 import './strategies.scss'
 import { useTypedSelector } from '../../../shared/lib/store/useTypesSelector'
 import { StrategyItem } from '../../../shared/ui/strategyItem'
 import { useAppDispatch } from '../../../shared/lib/store/useAppDispatch'
 import { fetchStrategies } from '../../../entites/strategies'
+import { TaskCreationPopup } from '../../../widgets/taskCreationPopup'
 
 export const Strategies: FC = () => {
     const dispatch = useAppDispatch()
@@ -15,9 +16,19 @@ export const Strategies: FC = () => {
         <StrategyItem strategy={strategy} />
     ))
 
+    const [isPopupOpen, setPopupOpen] = useState(false)
+
     useEffect(() => {
         dispatch(fetchStrategies())
     }, [])
+
+    const handleOpenPopup = () => {
+        setPopupOpen(true)
+    }
+
+    const handleClosePopup = () => {
+        setPopupOpen(false)
+    }
 
     return (
         <section className='strategies'>
@@ -25,9 +36,7 @@ export const Strategies: FC = () => {
                 <>
                     <div className='strategies__header'>
                         <h2>Ваши cтратегии</h2>
-                        <Button
-                            onClick={() => console.log('sdasd')}
-                            isDisabled={false}>
+                        <Button onClick={handleOpenPopup} isDisabled={false}>
                             +
                         </Button>
                     </div>
@@ -36,6 +45,7 @@ export const Strategies: FC = () => {
             ) : (
                 'Загрузка'
             )}
+            {isPopupOpen && <TaskCreationPopup onClose={handleClosePopup} />}
         </section>
     )
 }

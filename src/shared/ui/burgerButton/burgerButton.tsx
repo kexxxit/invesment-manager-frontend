@@ -8,31 +8,13 @@ interface ILink {
     href: string
 }
 
-export const BurgerButton: FC = () => {
+interface IBurgerButtonProps {
+    links: ILink[]
+}
+
+export const BurgerButton: FC<IBurgerButtonProps> = ({ links }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const burgerButtonRef = useRef<HTMLDivElement>(null)
-    const links: ILink[] = [
-        {
-            value: 'main',
-            label: 'Главная',
-            href: '',
-        },
-        {
-            value: 'strategies',
-            label: 'Стратегии',
-            href: 'strategies',
-        },
-        {
-            value: 'operations',
-            label: 'Список операций',
-            href: 'operations',
-        },
-        {
-            value: 'favorites',
-            label: 'Избранные',
-            href: 'favorites',
-        },
-    ]
 
     const handleClickOutside = (event: MouseEvent) => {
         if (

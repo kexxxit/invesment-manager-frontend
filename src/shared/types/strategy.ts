@@ -21,9 +21,24 @@ export interface IStrategy {
     isCooseWithAHigherRating: boolean;
     accountId: string;
     isEnabled: boolean;
+    isSandbox: boolean;
     totalAmountBonds: number;
     totalAmountCurrencies: number;
     expectedYield: number;
+    accountName: string
+}
+
+export interface IStrategyRequest {
+    strategy: Strategies;
+    desiredPercentage: number;
+    bondRating: BondRiskLevel;
+    startDate: Date;
+    endDate: Date;
+    isCooseWithAHigherRating: boolean;
+    accountId: string;
+    isEnabled: boolean;
+    intervalCount: number;
+    isSandbox: boolean
 }
 
 export enum Strategies {
