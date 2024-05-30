@@ -1,20 +1,22 @@
 {
   "files": {
-    "main.css": "/invesment-manager-frontend/static/css/main.0724e1ad.css",
-    "main.js": "/invesment-manager-frontend/static/js/main.fe1a475e.js",
+    "main.css": "/invesment-manager-frontend/static/css/main.81ea3cc9.css",
+    "main.js": "/invesment-manager-frontend/static/js/main.5910284b.js",
     "static/js/453.bae52e61.chunk.js": "/invesment-manager-frontend/static/js/453.bae52e61.chunk.js",
+    "static/media/settingsIcon.svg": "/invesment-manager-frontend/static/media/settingsIcon.0803a778e7d3935ab9c5919a6d045459.svg",
     "static/media/sortBottom.svg": "/invesment-manager-frontend/static/media/sortBottom.2b921095fe2fff3d53005108b130373f.svg",
     "static/media/sortTop.svg": "/invesment-manager-frontend/static/media/sortTop.15e3ca978eb7338cef6f4592134c57de.svg",
     "index.html": "/invesment-manager-frontend/index.html",
     "static/media/starFilled.svg": "/invesment-manager-frontend/static/media/starFilled.dc2af0c7d5fdb4ad9c41db942d4b64ec.svg",
     "static/media/arrow.svg": "/invesment-manager-frontend/static/media/arrow.91ab20b6f7c32e1a3cb643ddc66b991d.svg",
+    "static/media/cross.svg": "/invesment-manager-frontend/static/media/cross.a99909545ffb73a2d4d6bbeacf5f958b.svg",
     "static/media/star.svg": "/invesment-manager-frontend/static/media/star.1abcb6e412191aef323af0ef61a24976.svg",
-    "main.0724e1ad.css.map": "/invesment-manager-frontend/static/css/main.0724e1ad.css.map",
-    "main.fe1a475e.js.map": "/invesment-manager-frontend/static/js/main.fe1a475e.js.map",
+    "main.81ea3cc9.css.map": "/invesment-manager-frontend/static/css/main.81ea3cc9.css.map",
+    "main.5910284b.js.map": "/invesment-manager-frontend/static/js/main.5910284b.js.map",
     "453.bae52e61.chunk.js.map": "/invesment-manager-frontend/static/js/453.bae52e61.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0724e1ad.css",
-    "static/js/main.fe1a475e.js"
+    "static/css/main.81ea3cc9.css",
+    "static/js/main.5910284b.js"
   ]
 }
