@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/invesment-manager-frontend/static/css/main.81ea3cc9.css",
-    "main.js": "/invesment-manager-frontend/static/js/main.5910284b.js",
+    "main.css": "/invesment-manager-frontend/static/css/main.e2cfd429.css",
+    "main.js": "/invesment-manager-frontend/static/js/main.17eb62b7.js",
     "static/js/453.bae52e61.chunk.js": "/invesment-manager-frontend/static/js/453.bae52e61.chunk.js",
     "static/media/settingsIcon.svg": "/invesment-manager-frontend/static/media/settingsIcon.0803a778e7d3935ab9c5919a6d045459.svg",
     "static/media/sortBottom.svg": "/invesment-manager-frontend/static/media/sortBottom.2b921095fe2fff3d53005108b130373f.svg",
@@ -11,12 +11,12 @@
     "static/media/arrow.svg": "/invesment-manager-frontend/static/media/arrow.91ab20b6f7c32e1a3cb643ddc66b991d.svg",
     "static/media/cross.svg": "/invesment-manager-frontend/static/media/cross.a99909545ffb73a2d4d6bbeacf5f958b.svg",
     "static/media/star.svg": "/invesment-manager-frontend/static/media/star.1abcb6e412191aef323af0ef61a24976.svg",
-    "main.81ea3cc9.css.map": "/invesment-manager-frontend/static/css/main.81ea3cc9.css.map",
-    "main.5910284b.js.map": "/invesment-manager-frontend/static/js/main.5910284b.js.map",
+    "main.e2cfd429.css.map": "/invesment-manager-frontend/static/css/main.e2cfd429.css.map",
+    "main.17eb62b7.js.map": "/invesment-manager-frontend/static/js/main.17eb62b7.js.map",
     "453.bae52e61.chunk.js.map": "/invesment-manager-frontend/static/js/453.bae52e61.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.81ea3cc9.css",
-    "static/js/main.5910284b.js"
+    "static/css/main.e2cfd429.css",
+    "static/js/main.17eb62b7.js"
   ]
 }
