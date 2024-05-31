@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../../shared/lib/store/useAppDispatch'
 import { useTypedSelector } from '../../../shared/lib/store/useTypesSelector'
 import { auth, isAuthMethod } from '../../../entites/auth'
 import { useNavigate } from 'react-router-dom'
+import { getAccountsThunk } from '../../../entites/accounts'
 
 export const Authorization = () => {
     const [token, setToken] = useState<string>('')
@@ -30,7 +31,10 @@ export const Authorization = () => {
     }, [])
 
     useEffect(() => {
-        if (isAuth) navigate('/')
+        if (isAuth) {
+            dispatch(getAccountsThunk())
+            navigate('/')
+        } 
     }, [isAuth])
 
     return (

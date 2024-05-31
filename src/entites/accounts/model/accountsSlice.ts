@@ -1,10 +1,13 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { IAccount, RejectedDataType } from '../../../shared/types'
 import { getAccountBalanceThunk, getAccountsThunk, getSandboxAccountsThunk } from './accountsThunk'
+import { IOption } from '../../../shared/ui/dropdown'
 
 export interface IAuthState {
     /** Accounts array. */
     readonly accounts: IAccount[]
+    /** Accounts options. */
+    readonly accountsOptions: IOption[]
     /** Sandbox accounts array. */
     readonly sandboxAccounts: IAccount[]
     /** Current account. */
@@ -19,6 +22,7 @@ export interface IAuthState {
 
 const initialState: IAuthState = {
     accounts: [],
+    accountsOptions: [],
     sandboxAccounts: [],
     currentAccount: undefined,
     balance: 0,
@@ -43,6 +47,10 @@ const accountsSlice = createSlice({
             })
             .addCase(getAccountsThunk.fulfilled, (state, data) => {
                 state.accounts = data.payload.accounts
+                state.accountsOptions = data.payload.accounts.map((account) => ({
+                    label: account.name,
+                    value: account.id,
+                }))
                 data.payload.accounts.length > 0
                     ? (state.currentAccount = data.payload.accounts[0])
                     : (state.currentAccount = undefined)

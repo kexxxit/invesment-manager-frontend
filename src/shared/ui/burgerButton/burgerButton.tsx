@@ -1,6 +1,8 @@
 import { FC, useEffect, useRef, useState } from 'react'
 import './burgerButton.scss'
 import { Link } from 'react-router-dom'
+import { useAppDispatch } from '../../lib/store/useAppDispatch'
+import { logoutThunk } from '../../../entites/auth'
 
 interface ILink {
     value: string
@@ -15,6 +17,7 @@ interface IBurgerButtonProps {
 export const BurgerButton: FC<IBurgerButtonProps> = ({ links }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const burgerButtonRef = useRef<HTMLDivElement>(null)
+    const dispatch = useAppDispatch()
 
     const handleClickOutside = (event: MouseEvent) => {
         if (
@@ -23,6 +26,10 @@ export const BurgerButton: FC<IBurgerButtonProps> = ({ links }) => {
         ) {
             setIsOpen(false)
         }
+    }
+
+    const handleLogoutClick = () => {
+        dispatch(logoutThunk())
     }
 
     useEffect(() => {
@@ -60,6 +67,13 @@ export const BurgerButton: FC<IBurgerButtonProps> = ({ links }) => {
                                 </Link>
                             </li>
                         ))}
+                        <li>
+                            <button
+                                onClick={handleLogoutClick}
+                                className='burger-button__menu__logout'>
+                                Выйти
+                            </button>
+                        </li>
                     </ul>
                 </div>
             )}

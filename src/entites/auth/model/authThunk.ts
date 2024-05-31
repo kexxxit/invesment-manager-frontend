@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ErrorType, RejectedDataType } from '../../../shared/types'
-import { authorize, isAutorized } from '../../../shared/api/auth'
+import { authorize, isAutorized, logout } from '../../../shared/api/auth'
 
 export const auth = createAsyncThunk<
     {},
@@ -27,6 +27,25 @@ export const isAuthMethod = createAsyncThunk<
 >('isAuth', async (_, thunkAPI) => {
     try {
         const response = await isAutorized()
+        return response
+    } catch (err: unknown) {
+        const knownError = err as ErrorType
+
+        return thunkAPI.rejectWithValue({
+            messageError: knownError.message,
+            status: knownError.response?.status,
+        })
+    }
+})
+
+export const logoutThunk = createAsyncThunk<
+    {},
+    void,
+    { readonly rejectValue: RejectedDataType }
+>('auth/logout', async (_, thunkAPI) => {
+    try {
+        const response = await logout()
+        thunkAPI.dispatch(isAuthMethod)
         return response
     } catch (err: unknown) {
         const knownError = err as ErrorType

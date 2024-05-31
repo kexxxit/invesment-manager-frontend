@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RejectedDataType } from '../../../shared/types'
-import { auth, isAuthMethod } from './authThunk'
+import { auth, isAuthMethod, logoutThunk } from './authThunk'
 
 export interface IAuthState {
     /** Authorization flag. */
@@ -14,15 +14,13 @@ export interface IAuthState {
 const initialState: IAuthState = {
     isAuth: false,
     isLoading: true,
-    error: null
+    error: null,
 }
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {
-        
-    },
+    reducers: {},
     extraReducers: (builder) =>
         builder
             .addCase(auth.pending, (state) => {
@@ -48,8 +46,14 @@ const authSlice = createSlice({
                 state.error = null
             })
             .addCase(isAuthMethod.rejected, (state, action) => {
+                state.isAuth = false
                 state.isLoading = false
                 state.error = action.payload ?? null
+            })
+            .addCase(logoutThunk.fulfilled, (state, action) => {
+                state.isAuth = false
+                state.isLoading = false
+                state.error = null
             }),
 })
 

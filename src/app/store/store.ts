@@ -7,6 +7,7 @@ import { accountsReducer } from "../../entites/accounts";
 import { bondPageReducer, orderReducer } from "../../entites/bondPage";
 import { notificationsReducer } from "../../entites/notifications";
 import { strategiesReducer } from "../../entites/strategies";
+import { portfolioReducer } from "../../entites/portfolio";
 
 export const store = configureStore({
     reducer: {
@@ -17,7 +18,8 @@ export const store = configureStore({
         bondPage: bondPageReducer,
         order: orderReducer,
         notifications: notificationsReducer,
-        strategies: strategiesReducer
+        strategies: strategiesReducer,
+        portfolo: portfolioReducer
     },
 })
 

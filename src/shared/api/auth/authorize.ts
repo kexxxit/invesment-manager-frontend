@@ -13,3 +13,7 @@ export const authorize = (data: AuthData): Promise<{}> => {
 export const isAutorized = (): Promise<{}> => {
     return apiInstance.get(`${BASE_URL}`)
 }
+
+export const logout = (): Promise<{}> => {
+    return apiInstance.post(`${BASE_URL}/logout`, {})
+}

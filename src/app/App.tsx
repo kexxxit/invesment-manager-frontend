@@ -6,6 +6,7 @@ import { ManualModePage } from '../pages/manualModePage'
 import { Authorization } from '../pages/authorization/ui/authorization'
 import { Bond } from '../pages/bond'
 import { Strategies } from '../pages/strategies'
+import { Portfolio } from '../pages/portfolio'
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                         <Route index element={<ManualModePage />} />
                         <Route path={'/auth'} element={<Authorization />} />
                         <Route path={'/strategies'} element={<Strategies />} />
+                        <Route path={'/portfolio'} element={<Portfolio />} />
                         <Route path={':bondId'} element={<Bond />}/>
                     </Route>
                 </Routes>

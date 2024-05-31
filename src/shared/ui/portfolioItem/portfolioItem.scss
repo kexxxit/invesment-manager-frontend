@@ -1,0 +1,47 @@
+.position {
+    width: 100%;
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: auto 3fr 1fr 1fr 1fr;
+    column-gap: 40px; 
+    align-items: center;
+    border-top: 1px solid;
+    border-color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: background-color 0.1s;
+
+    &__logo {
+        width: 76px;
+        height: 76px;
+        border-radius: 99px;
+    }
+
+    &__name-group {
+        display: grid;
+        row-gap: 5px;
+        text-wrap: nowrap;
+        width: 100%;
+    }
+
+    &__name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__isin {
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    &__profit {
+        color: green;
+    }
+}
+
+.position:last-child {
+    border-bottom: 1px solid;
+    border-color: rgba(0, 0, 0, 0.4);
+}
+
+.position:hover {
+    background-color: rgb(247, 247, 247);
+}

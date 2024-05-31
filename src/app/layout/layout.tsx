@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import './layout.scss'
 import { Header } from '../../widgets/header'
 import { useEffect } from 'react'
@@ -14,7 +14,8 @@ export const Layout = () => {
     const { isAuth, isLoading, error } = useTypedSelector((state) => state.auth)
     const { currentAccount } = useTypedSelector((state) => state.accounts)
     const dispatch = useAppDispatch()
-
+    const location = useLocation()
+    
     useEffect(() => {
         dispatch(isAuthMethod())
         dispatch(getAccountsThunk())
@@ -32,7 +33,7 @@ export const Layout = () => {
 
     return (
         <>
-            <Header />
+            {location.pathname !== 'auth' && <Header />}
 
             <main className='layout__content'>
                 <Outlet />

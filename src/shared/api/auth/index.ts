@@ -1,1 +1,1 @@
-export { authorize, isAutorized } from './authorize'
+export { authorize, isAutorized, logout } from './authorize'

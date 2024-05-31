@@ -10,16 +10,16 @@ import { NAV_LINKS } from '../../../shared/consts'
 
 export const Header = () => {
     const dispatch = useAppDispatch()
-    const { accounts, balance, currentAccount, error, isLoading } =
-        useTypedSelector((state) => state.accounts)
+    const {
+        accounts,
+        accountsOptions,
+        balance,
+        currentAccount,
+        error,
+        isLoading,
+    } = useTypedSelector((state) => state.accounts)
     const location = useLocation()
     const currentPath = location.pathname
-    console.log(currentPath)
-
-    const dropdownOptions: IOption[] = accounts.map((account) => ({
-        label: account.name,
-        value: account.id,
-    }))
 
     const currentOption: IOption | undefined = currentAccount
         ? {
@@ -47,14 +47,14 @@ export const Header = () => {
     return (
         <div className='header__wrapper'>
             <div className='header__elem'>
-                <BurgerButton links={NAV_LINKS}/>
+                <BurgerButton links={NAV_LINKS} />
             </div>
             {currentPath !== '/strategies' ? (
                 <>
                     <div className='header__elem header__account'>
                         <Dropdown
                             currentValue={currentOption}
-                            options={dropdownOptions}
+                            options={accountsOptions}
                             onSelect={onDropdownValueChange}
                             style='white'
                         />

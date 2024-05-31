@@ -23,3 +23,4 @@ export {
     Strategies,
 } from './strategy'
 export type { ILink } from './link'
+export type { IPortfolio, IPosition } from './portfolio'
