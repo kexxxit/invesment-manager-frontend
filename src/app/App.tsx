@@ -7,6 +7,7 @@ import { Authorization } from '../pages/authorization/ui/authorization'
 import { Bond } from '../pages/bond'
 import { Strategies } from '../pages/strategies'
 import { Portfolio } from '../pages/portfolio'
+import { FaqPage } from '../pages/faq'
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                         <Route path={'/auth'} element={<Authorization />} />
                         <Route path={'/strategies'} element={<Strategies />} />
                         <Route path={'/portfolio'} element={<Portfolio />} />
+                        <Route path={'/faq'} element={<FaqPage />} />
                         <Route path={':bondId'} element={<Bond />}/>
                     </Route>
                 </Routes>

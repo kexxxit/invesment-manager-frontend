@@ -15,5 +15,10 @@ export const NAV_LINKS: ILink[] = [
         value: 'portfolio',
         label: 'Портфель',
         href: 'portfolio',
+    },
+    {
+        value: 'faq',
+        label: 'FAQ',
+        href: 'faq',
     }
 ]

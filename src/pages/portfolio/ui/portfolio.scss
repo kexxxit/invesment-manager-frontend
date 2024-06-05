@@ -1,7 +1,30 @@
 .portfolio {
-    height: 100%;
+    height: calc(100% - 50px);
     margin-bottom: 10px;
     background-color: white;
     border-radius: 20px;
     padding: 20px;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+
+    &__header {
+        display: grid;
+        column-gap: 40px;
+        grid-template-columns: 3fr 1fr 1fr 1fr;
+        margin-right: 11px;
+        padding: 10px 0;
+        border-bottom: 1px solid black;
+
+        h3 {
+            color: rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    &__items {
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        .preloader {
+            margin-top: 20px;
+        }
+    }
 }

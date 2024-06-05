@@ -4,6 +4,7 @@ import './recomendations.scss'
 import { RecomendedBond } from '../../../shared/ui/recomendedBond'
 import { IBond } from '../../../shared/types'
 import { useNavigate } from 'react-router-dom'
+import { Preloader } from '../../../shared/ui/perloader'
 
 interface RecomendationsProps {
     readonly recomendedBonds: IBond[]
@@ -28,12 +29,18 @@ export const Recomendations: FC<RecomendationsProps> = ({
     ))
 
     return (
-        <section className={`recomendations`}>
+        <section className='recomendations'>
             <h2 className='recomendations__title'>Рекомендации</h2>
-            <Slider
-                children={recomendedBondsComponents}
-                contentIsLoading={isLoading}
-            />
+            <div className='recomendations__slider'>
+                {!isLoading ? (
+                    <Slider
+                        children={recomendedBondsComponents}
+                        contentIsLoading={isLoading}
+                    />
+                ) : (
+                    <Preloader />
+                )}
+            </div>
         </section>
     )
 }

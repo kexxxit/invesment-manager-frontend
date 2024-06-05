@@ -1,8 +1,8 @@
 import { IOrderRequest, IOrderResponse } from '../../types'
 import { apiInstance } from '../base'
 
-const BASE_URL = 'invest/order'
+const BASE_URL = 'invest/sandbox/order'
 
-export const placeOrder = (order: IOrderRequest): Promise<IOrderResponse> => {
+export const placeSandboxOrder = (order: IOrderRequest): Promise<IOrderResponse> => {
     return apiInstance.post(`${BASE_URL}`, order )
 }

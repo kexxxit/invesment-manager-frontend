@@ -7,7 +7,11 @@ import {
     IOrderResponse,
     RejectedDataType,
 } from '../../../shared/types'
-import { getBondById, placeOrder } from '../../../shared/api/bonds'
+import {
+    getBondById,
+    placeOrder,
+    placeSandboxOrder,
+} from '../../../shared/api/bonds'
 import { getBondEvents } from '../../../shared/api/bonds/getBondEvents'
 import { getTradingStatus } from '../../../shared/api/exchange'
 
@@ -41,11 +45,13 @@ export const fetchBondPage = createAsyncThunk<
 
 export const postOrder = createAsyncThunk<
     IOrderResponse,
-    IOrderRequest,
+    { req: IOrderRequest; isSandbox: boolean },
     { readonly rejectValue: RejectedDataType }
->('bonds/order', async (orderRequest, thunkAPI) => {
+>('bonds/order', async (data, thunkAPI) => {
     try {
-        const order = await placeOrder(orderRequest)
+        const order = data.isSandbox
+            ? await placeSandboxOrder(data.req)
+            : await placeOrder(data.req)
         return order
     } catch (err: unknown) {
         const knownError = err as ErrorType

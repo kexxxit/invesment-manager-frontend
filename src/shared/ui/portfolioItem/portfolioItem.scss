@@ -2,10 +2,10 @@
     width: 100%;
     padding: 10px 0;
     display: grid;
-    grid-template-columns: auto 3fr 1fr 1fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
     column-gap: 40px; 
     align-items: center;
-    border-top: 1px solid;
+    border-bottom: 1px solid;
     border-color: rgba(0, 0, 0, 0.4);
     cursor: pointer;
     transition: background-color 0.1s;
@@ -17,10 +17,13 @@
     }
 
     &__name-group {
-        display: grid;
-        row-gap: 5px;
-        text-wrap: nowrap;
+        display: flex;
+        align-items: center;
         width: 100%;
+        
+        img {
+            margin-right: 20px;
+        }
     }
 
     &__name {
@@ -35,11 +38,10 @@
     &__profit {
         color: green;
     }
-}
 
-.position:last-child {
-    border-bottom: 1px solid;
-    border-color: rgba(0, 0, 0, 0.4);
+    &__quantity {
+        color: rgba(0, 0, 0, 0.5);
+    }
 }
 
 .position:hover {

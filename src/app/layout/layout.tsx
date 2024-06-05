@@ -33,7 +33,7 @@ export const Layout = () => {
 
     return (
         <>
-            {location.pathname !== 'auth' && <Header />}
+            {location.pathname !== '/auth' && <Header />}
 
             <main className='layout__content'>
                 <Outlet />

@@ -38,13 +38,13 @@ export const StrategyItem: FC<StrategyItemProps> = ({ strategy }) => {
                         : 'Штанга'}
                 </h1>
                 <div className='strategy__header-img'>
-                    <img src={SettingsIcon} alt='' />
+                    {/* <img src={SettingsIcon} alt='' /> */}
                 </div>
             </div>
             <div className='strategy__content'>
                 <div className='strategy__content--item'>
                     <h3 className='strategy__content--item-title'>Счет:</h3>
-                    <h3>{strategy.accountName}</h3>
+                    <h3>{strategy.accountName} {strategy.isSandbox && '(песочница)'}</h3>
                 </div>
                 <div className='strategy__content--item'>
                     <h3 className='strategy__content--item-title'>Рейтинг:</h3>

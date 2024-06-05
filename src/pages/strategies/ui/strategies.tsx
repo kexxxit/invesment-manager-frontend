@@ -6,6 +6,7 @@ import { StrategyItem } from '../../../shared/ui/strategyItem'
 import { useAppDispatch } from '../../../shared/lib/store/useAppDispatch'
 import { fetchStrategies } from '../../../entites/strategies'
 import { TaskCreationPopup } from '../../../widgets/taskCreationPopup'
+import { Preloader } from '../../../shared/ui/perloader'
 
 export const Strategies: FC = () => {
     const dispatch = useAppDispatch()
@@ -32,18 +33,18 @@ export const Strategies: FC = () => {
 
     return (
         <section className='strategies'>
-            {!isLoading ? (
-                <>
-                    <div className='strategies__header'>
-                        <h2>Ваши cтратегии</h2>
-                        <Button onClick={handleOpenPopup} isDisabled={false}>
-                            +
-                        </Button>
-                    </div>
-                    <div className='strategies__content'>{strategyItems}</div>
-                </>
+            <div className='strategies__header'>
+                <h2>Ваши cтратегии</h2>
+                {!isLoading && (
+                    <Button onClick={handleOpenPopup} isDisabled={false}>
+                        +
+                    </Button>
+                )}
+            </div>
+            {isLoading ? (
+                <Preloader />
             ) : (
-                'Загрузка'
+                <div className='strategies__content'>{strategyItems}</div>
             )}
             {isPopupOpen && <TaskCreationPopup onClose={handleClosePopup} />}
         </section>

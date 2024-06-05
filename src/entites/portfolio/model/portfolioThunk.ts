@@ -1,14 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ErrorType, IPortfolio, RejectedDataType } from '../../../shared/types'
-import { getPortfolio } from '../../../shared/api/getPortfolio'
+import {
+    getPortfolio,
+    getSandboxPortfolio,
+} from '../../../shared/api/getPortfolio'
 
 export const fetchPortfolio = createAsyncThunk<
     IPortfolio,
-    string,
+    { accontId: string; isSandbox: boolean },
     { readonly rejectValue: RejectedDataType }
->('portfolio', async (accountId, thunkAPI) => {
+>('portfolio', async (data, thunkAPI) => {
     try {
-        const response = await getPortfolio(accountId)
+        const response = data.isSandbox
+            ? await getSandboxPortfolio(data.accontId)
+            : await getPortfolio(data.accontId)
         return response
     } catch (err: unknown) {
         const knownError = err as ErrorType

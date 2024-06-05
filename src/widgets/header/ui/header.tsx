@@ -3,7 +3,7 @@ import { BurgerButton } from '../../../shared/ui/burgerButton'
 import { Dropdown, IOption } from '../../../shared/ui/dropdown'
 import { RadioButton } from '../../../shared/ui/radioButton'
 import { useTypedSelector } from '../../../shared/lib/store/useTypesSelector'
-import { setCurrentAccount } from '../../../entites/accounts'
+import { setCurrentAccount, toggleSandbox } from '../../../entites/accounts'
 import { useAppDispatch } from '../../../shared/lib/store/useAppDispatch'
 import { useLocation } from 'react-router-dom'
 import { NAV_LINKS } from '../../../shared/consts'
@@ -14,7 +14,9 @@ export const Header = () => {
         accounts,
         accountsOptions,
         balance,
+        sandboxAccounts,
         currentAccount,
+        isSandbox,
         error,
         isLoading,
     } = useTypedSelector((state) => state.accounts)
@@ -34,14 +36,10 @@ export const Header = () => {
     ]
 
     const onDropdownValueChange = (option: IOption) => {
-        const chosedAccount = accounts.find(
+        const chosedAccount = (isSandbox ? sandboxAccounts : accounts).find(
             (account) => account.id === option.value
         )
         if (chosedAccount) dispatch(setCurrentAccount(chosedAccount))
-    }
-
-    const onRadioButtonClick = (option: IOption) => {
-        console.log(option.value)
     }
 
     return (
@@ -49,7 +47,7 @@ export const Header = () => {
             <div className='header__elem'>
                 <BurgerButton links={NAV_LINKS} />
             </div>
-            {currentPath !== '/strategies' ? (
+            {currentPath !== '/strategies' && currentPath !== '/faq' ? (
                 <>
                     <div className='header__elem header__account'>
                         <Dropdown
@@ -60,6 +58,13 @@ export const Header = () => {
                         />
                     </div>
                     <div className='header__elem header__balance'>{`${balance} руб.`}</div>
+                    <div className='header__elem header__radio-button'>
+                        <h3>Песочница</h3>
+                        <RadioButton
+                            flag={isSandbox}
+                            onClick={() => dispatch(toggleSandbox())}
+                        />
+                    </div>
                 </>
             ) : (
                 <>
@@ -67,13 +72,6 @@ export const Header = () => {
                     <div></div>
                 </>
             )}
-            <div className='header__elem header__radio-button'>
-                <RadioButton
-                    itemLeft={radioOptions[0]}
-                    itemRight={radioOptions[1]}
-                    onClick={onRadioButtonClick}
-                />
-            </div>
         </div>
     )
 }

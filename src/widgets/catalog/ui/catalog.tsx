@@ -22,6 +22,7 @@ import {
 } from '../../../shared/consts'
 import { ColumnHeader } from '../../../shared/ui/columnHeader/columnHeader'
 import { useNavigate } from 'react-router-dom'
+import { Preloader } from '../../../shared/ui/perloader'
 
 export const Catalog: FC = () => {
     const { currentPageBonds, isLoading, pagination, error, queryParams } =
@@ -167,7 +168,9 @@ export const Catalog: FC = () => {
                     sortBy={queryParams.sortBy}
                 />
             </div>
-            <div className='catalog__items'>{bondsItems}</div>
+            <div className='catalog__items'>
+                {isLoading ? <Preloader /> : bondsItems}
+            </div>
             <div className='catalog__pagination'>
                 <ReactPaginate
                     forcePage={pagination.currentPage - 1}

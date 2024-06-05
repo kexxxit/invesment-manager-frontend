@@ -1,6 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { IAccount, RejectedDataType } from '../../../shared/types'
-import { getAccountBalanceThunk, getAccountsThunk, getSandboxAccountsThunk } from './accountsThunk'
+import {
+    getAccountBalanceThunk,
+    getAccountsThunk,
+    getSandboxAccountsThunk,
+} from './accountsThunk'
 import { IOption } from '../../../shared/ui/dropdown'
 
 export interface IAuthState {
@@ -14,6 +18,8 @@ export interface IAuthState {
     readonly currentAccount?: IAccount
     /** Current account balance. */
     readonly balance: number
+    /** Sandbox mode flag. */
+    readonly isSandbox: boolean
     /** Data loading indicator. */
     readonly isLoading: boolean
     /** Error message. */
@@ -24,6 +30,7 @@ const initialState: IAuthState = {
     accounts: [],
     accountsOptions: [],
     sandboxAccounts: [],
+    isSandbox: false,
     currentAccount: undefined,
     balance: 0,
     isLoading: true,
@@ -36,7 +43,15 @@ const accountsSlice = createSlice({
     reducers: {
         setCurrentAccount: (state, action: PayloadAction<IAccount>) => {
             state.currentAccount = action.payload
-            console.log(action.payload)
+        },
+        toggleSandbox: (state) => {
+            state.isSandbox = !state.isSandbox
+            state.accountsOptions = (state.isSandbox
+                ? state.sandboxAccounts
+                : state.accounts).map((account) => ({
+                      label: account.name,
+                      value: account.id,
+                  }))
         },
     },
     extraReducers: (builder) =>
@@ -47,10 +62,12 @@ const accountsSlice = createSlice({
             })
             .addCase(getAccountsThunk.fulfilled, (state, data) => {
                 state.accounts = data.payload.accounts
-                state.accountsOptions = data.payload.accounts.map((account) => ({
-                    label: account.name,
-                    value: account.id,
-                }))
+                state.accountsOptions = data.payload.accounts.map(
+                    (account) => ({
+                        label: account.name,
+                        value: account.id,
+                    })
+                )
                 data.payload.accounts.length > 0
                     ? (state.currentAccount = data.payload.accounts[0])
                     : (state.currentAccount = undefined)
@@ -66,8 +83,8 @@ const accountsSlice = createSlice({
             })
             .addCase(getAccountBalanceThunk.fulfilled, (state, data) => {
                 state.balance = data.payload.balance
-            })
+            }),
 })
 
-export const { setCurrentAccount } = accountsSlice.actions
+export const { setCurrentAccount, toggleSandbox } = accountsSlice.actions
 export default accountsSlice.reducer

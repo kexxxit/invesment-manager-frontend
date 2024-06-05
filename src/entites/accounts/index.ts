@@ -1,5 +1,6 @@
 export {
     setCurrentAccount,
+    toggleSandbox,
     default as accountsReducer,
 } from './model/accountsSlice'
 export {

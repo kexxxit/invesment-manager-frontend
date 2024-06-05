@@ -30,6 +30,7 @@ export const BurgerButton: FC<IBurgerButtonProps> = ({ links }) => {
 
     const handleLogoutClick = () => {
         dispatch(logoutThunk())
+        setIsOpen(false)
     }
 
     useEffect(() => {

@@ -21,12 +21,17 @@
         }
     }
 
+    .preloader {
+        margin-top: 10px;
+        background-color: white;
+        border-radius: 20px;
+    }
+
     &__content {
         margin-top: 10px;
         background-color: white;
         padding: 20px;
         border-radius: 20px;
-        margin-bottom: 10px;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;

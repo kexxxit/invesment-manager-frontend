@@ -34,7 +34,9 @@ export const Bond: FC = () => {
     )
     const { order, isOrderLoading, isTradingEnabled, orderError } =
         useTypedSelector((state) => state.order)
-    const { currentAccount } = useTypedSelector((state) => state.accounts)
+    const { currentAccount, isSandbox } = useTypedSelector(
+        (state) => state.accounts
+    )
 
     const bondEventsTable = bondEvents?.map((event) => {
         const actual = new Date(event.eventDate) > new Date()
@@ -70,7 +72,7 @@ export const Bond: FC = () => {
                 instrumentId: bond.uid,
                 priceType: PriceType.Currency,
             }
-            dispatch(postOrder(req))
+            dispatch(postOrder({ req: req, isSandbox: isSandbox }))
             dispatch(getAccountBalanceThunk(currentAccount.id))
         }
     }

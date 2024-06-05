@@ -47,7 +47,6 @@ export const Authorization = () => {
                         label='Токен авторизации Tinkoff invest api'
                         onChange={handleChange}
                     />
-                    <div>{error?.messageError}</div>
                     <Button isDisabled={isLoading} onClick={handleClick}>
                         Войти
                     </Button>
