@@ -1,10 +1,6 @@
-# Getting Started with Create React App
+# Клиентская часть выпускной работы по разработке торгового web-сервиса с использованием tinkoff invest API 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
+Данный проект ориентирован на автоматизацию торговли на рынке облигаций. Сервис предоставляет набор автоматизированных стратегий инвестирования в облигации (Лестьница облигаций и штанга). Также есть возможность управлять портфелем облигацаий в ручном режиме и режим "песочницы" в котором можно создать песочные счета и протестировать функционал.  
 
 ### `npm start`
 
